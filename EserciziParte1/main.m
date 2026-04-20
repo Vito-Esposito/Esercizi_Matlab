@@ -103,3 +103,122 @@ Q= E([2, 4, 5, 1], 1:4);
 % genera la matrice la matrice T3, 3×3, ottenuta eliminando la seconda
 % colonna di T
 T3= T(1:3, [1, 3, 4]);
+
+% calcola il rango della matrice T3, con opportuna funzione Matlab
+disp('Il rango di T3 è: ')
+disp(rank(T3))
+
+% genera una matrice R3, 3 × 3, di numeri pseudocasuali uniformente
+% distribuiti nell’intervallo [0, 1]
+R3= 1*rand(3,3);
+
+% calcola un vettore riga contentente il massimo di ogni colonna di R3
+% con opportuna funzione Matlab
+v_R3= max(R3, [], 1);
+
+% genera il vettore colonna u = [1, 1, 1] con opportuna funzione Matlab
+u= ones(1, 3)';
+
+% calcola il prodotto righe per colonne b = R3 · u;
+b= R3*u;
+
+% risolve il sistema lineare R3 · x calc = b con la funzione Matlab \;
+x_calc= R3\b;
+disp('Soluzione del sistema lineare è:');
+disp(x_calc)
+
+% confronta la soluzione calcolata x calc con la soluzione ideale x, 
+% calcolando in Err la norma 2 della solo differenza, con opportuna 
+% funzione Matlab
+x_ideale = [1; 1; 1];
+Err= norm(x_calc - x_ideale, 2);
+disp('La norma 2 della differenza è:');
+disp(Err);
+
+% genera un vettore colonna vett_int di 30 numeri interi pseudocasuali
+% uniformente distribuiti nell'intervallo [−10, 12];
+vett_int= randi([-10,12], 30, 1);
+
+% trova in quali posizioni p3 le componenti di vett int sono uguali a 3
+p3_matlab = find(vett_int == 3);
+
+k= 1;
+p3= [];
+for i=1:length(vett_int)
+    if vett_int(i) == 3
+        p3(k)= i;
+        k= k+1;
+    end
+end
+
+% trova in quali posizioni pg le componenti di vett int sono maggiori di 4
+pg_matlab = find(vett_int > 4);
+
+k= 1;
+pg= [];
+for i=1:length(vett_int)
+    if vett_int(i) > 4
+        pg(k)= i;
+        k= k+1;
+    end
+end
+
+% sostituisce in p le componenti minori di 0 con 1
+p_33= p;
+
+for i=1:length(p)
+    if p_33(i) < 0
+        p_33(i)= 0;
+    end
+end
+
+% genera il vettore riga dado che simula l'esito di 100 lanci di un dado
+% a 6 facce
+dado= randi([1, 6], 1, 100);
+
+% calcola la media M dado dei risultati dell'esperimento precedente
+media_dado_Matlab= mean(dado);
+
+media_dado= 0;
+for i=1:100
+    media_dado= media_dado + dado(i);
+end
+media_dado= media_dado/100;
+
+% genera le matrici *vedi file es. 36*
+H= zeros(3, 3);
+H(1, [1:3])= 1:3;
+H(2, [1:3])= 3:-1:1;
+H(3, [1:3])= [4, 4, 5];
+% oppure H= [1, 2, 3; 3, 2, 1; 4, 4, 5] oppure H = [1:3; 3:-1:1; 4, 4, 5];
+J= zeros(3, 3);
+J= [-1, -2, 0; 8, 3, 2; -4, 7, 3];
+
+% costruisce la matrice HJ, di ordine 3 × 6 affiancando J a destra di H
+HJ= [H, J];
+
+% calcola il prodotto S righe per colonne HJ^T · HJ
+S= HJ'*HJ;
+
+% calcola il rango rS della matrice S
+rS= rank(S);
+
+% calcola gli autovalori aut della matrice S con opportuna funzione
+% Matlab
+aut= eig(S);
+
+% genera il vettore riga delle ascisse xx = [1, 2, 3, . . . , 9, 10] ed 
+% il vettore riga yy delle corrispondenti ordinate ottenuto valutando in xx 
+% la funzione f(x) = x(2−cos(x))/x+5
+xx= 1:10;
+yy= xx .* (2-cos(xx)) ./ (xx + 5);
+% la funzione coseno in MATLAB è già predisposta per lavorare su 
+% interi vettori in un colpo solo.
+
+% genera un'immagine plottando il grafico dei 10 punti di f trovati al
+% punto precedente
+grid on
+plot(xx, yy);
+xlabel('xx (Ascisse)'); 
+ylabel('yy (Ordinate)');
+title('Grafico dei 10 punti di f(x) = x*(2 - cos(x)) / (x+5)');
