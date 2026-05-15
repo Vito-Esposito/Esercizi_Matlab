@@ -1,0 +1,9 @@
+n= input('Inserisci un intero positivo > 15: ')
+if n <= 15
+    error('Intero inserito sbagliato.')
+end
+
+n= input('Inserisci un intero positivo > 15: ')
+if n <= 15
+    error('Intero inserito sbagliato.')
+end
