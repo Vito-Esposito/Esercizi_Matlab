@@ -1,4 +1,4 @@
- clear all   % elimina variabili dalla memoria
+clear all   % elimina variabili dalla memoria
 close all   % chiude finestre grafici aperte
 clc         % pulisce il command windwos
 rand('seed', 14679)     % otterrò sempre gli stessi numeri randomizzati 
